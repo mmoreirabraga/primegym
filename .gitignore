@@ -41,3 +41,5 @@ Thumbs.db
 !.env.example
 application-local.properties
 application-local.yml
+
+src/main/resources/*.pem

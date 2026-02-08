@@ -2,8 +2,8 @@ package br.com.playgramador.primegym.application.usecase;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.playgramador.primegym.domain.port.UsuarioRepository;
 import br.com.playgramador.primegym.domain.service.PoliticaSenha;
+import br.com.playgramador.primegym.repo.UsuarioRepository;
 import br.com.playgramador.primegym.shared.annotation.UseCase;
 import br.com.playgramador.primegym.shared.excecao.BusinessException;
 import br.com.playgramador.primegym.web.dto.NovoUsuario;
@@ -32,7 +32,7 @@ public class CadastrarUsuarioUseCase {
         emailJaCadastrado(novoUsuario.email());
 
         var usuario = novoUsuario.converterParaEntidade();
-
+        usuario.setSenha(politicaSenha.gerarHash(usuario.getSenha()));
         usuarioRepository.save(usuario);
     }
 

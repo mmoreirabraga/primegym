@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.playgramador.primegym.application.usecase.CadastrarUsuarioUseCase;
-import br.com.playgramador.primegym.domain.port.UsuarioRepository;
+import br.com.playgramador.primegym.repo.UsuarioRepository;
 import br.com.playgramador.primegym.web.dto.NovoUsuario;
 import jakarta.validation.Valid;
 
