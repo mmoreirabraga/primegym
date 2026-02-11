@@ -1,5 +1,6 @@
 package br.com.playgramador.primegym.domain.model;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import jakarta.persistence.Column;
@@ -11,8 +12,10 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "usuario")
-public class Usuario extends BaseEntity{
+public class Usuario extends BaseEntity implements Serializable{
 
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;

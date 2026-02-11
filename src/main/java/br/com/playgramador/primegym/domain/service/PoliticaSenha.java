@@ -1,6 +1,5 @@
 package br.com.playgramador.primegym.domain.service;
 
-import org.springframework.security.authentication.BadCredentialsException;
 
 import br.com.playgramador.primegym.domain.port.PasswordHasher;
 import br.com.playgramador.primegym.shared.annotation.DomainService;

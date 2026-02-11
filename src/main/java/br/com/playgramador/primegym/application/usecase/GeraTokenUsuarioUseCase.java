@@ -2,7 +2,7 @@ package br.com.playgramador.primegym.application.usecase;
 
 import java.time.Instant;
 
-import org.springframework.security.authentication.BadCredentialsException;
+
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
