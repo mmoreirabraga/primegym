@@ -4,28 +4,29 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.playgramador.primegym.negocio.annotation.UseCase;
 import br.com.playgramador.primegym.negocio.dominio.FornecedorDominio;
+import br.com.playgramador.primegym.negocio.excecao.ResourceNotFoundException;
 import br.com.playgramador.primegym.negocio.port.FornecedorPorta;
 import br.com.playgramador.primegym.negocio.service.PoliticaValidacaoFornecedor;
 
-
 @UseCase
-public class CadastraFornecedorUseCase {
+public class AtualizaFornecedorUseCase {
 
     private final FornecedorPorta fornecedorPorta;
     private final PoliticaValidacaoFornecedor politicaValidacaoFornecedor;
-
-    public CadastraFornecedorUseCase(FornecedorPorta fornecedorPorta,
+    
+    public AtualizaFornecedorUseCase(FornecedorPorta fornecedorPorta,
                                         PoliticaValidacaoFornecedor politicaValidacaoFornecedor) {
           this.fornecedorPorta = fornecedorPorta;
           this.politicaValidacaoFornecedor = politicaValidacaoFornecedor;
      }
 
      @Transactional
-     public void execute(FornecedorDominio editaFornecedor) {
+     public void execute(Long id, FornecedorDominio fornecedor) {
+        
 
-          politicaValidacaoFornecedor.cnpjJaCadastrado(editaFornecedor.getCnpj());
+        politicaValidacaoFornecedor.validarSeIdExiste(id);
+        fornecedor.setId(id);
 
-          fornecedorPorta.salvar(editaFornecedor);
-     } 
-
+        fornecedorPorta.atualizar(fornecedor);
+     }
 }

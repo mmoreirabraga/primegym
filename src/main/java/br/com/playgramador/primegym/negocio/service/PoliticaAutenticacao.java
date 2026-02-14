@@ -26,7 +26,7 @@ public class PoliticaAutenticacao {
         }
 
         var usuarioDominio = usuarioDominioOpt.orElseThrow(
-            () -> new UnauthorizedException("auth.credenciais_invalida")
+            () -> new UnauthorizedException("auth.credenciais_invalidas")
         );
 
         politicaSenha.validarSenhaAtravesLogin(senha, usuarioDominio.getSenha());

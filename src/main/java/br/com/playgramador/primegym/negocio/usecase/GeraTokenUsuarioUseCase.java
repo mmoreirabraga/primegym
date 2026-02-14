@@ -8,7 +8,7 @@ import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.transaction.annotation.Transactional;
 
-import br.com.playgramador.primegym.aplicacao.entrada.LoginResponse;
+import br.com.playgramador.primegym.aplicacao.saida.LoginResponse;
 import br.com.playgramador.primegym.negocio.annotation.UseCase;
 import br.com.playgramador.primegym.negocio.dominio.LoginRequestDominio;
 import br.com.playgramador.primegym.negocio.service.PoliticaAutenticacao;

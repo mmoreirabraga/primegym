@@ -18,7 +18,4 @@ public record NovoFornecedor(
     String nomeFantasia
 ) {
 
-    public Fornecedor converterParaEntidade(){
-        return new Fornecedor(cnpj, razaoSocial, nomeFantasia);
-    }
 }
