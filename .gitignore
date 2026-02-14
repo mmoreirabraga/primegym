@@ -43,3 +43,5 @@ application-local.properties
 application-local.yml
 
 src/main/resources/*.pem
+
+bin/*

@@ -21,21 +21,13 @@ public class UsuarioRepositoryAdapter implements UsuarioPorta{
     }
 
     @Override
-    public UsuarioDominio salvar(UsuarioDominio usuarioDominio) {
-        var usuarioEntidade = usuarioMapeador.paraEntidade(usuarioDominio);
-
-        return usuarioMapeador.paraDominio(this.usuarioRepository.save(usuarioEntidade));
-        
-    }
-
-    @Override
     public boolean existeUsernameCadastrado(String username) {
         return this.usuarioRepository.existsByUsername(username);
     }
 
     @Override
     public boolean existeEmailCadastrado(String email) {
-        return this.existeEmailCadastrado(email);
+        return this.usuarioRepository.existsByEmail(email);
     }
 
     @Override
@@ -48,4 +40,12 @@ public class UsuarioRepositoryAdapter implements UsuarioPorta{
         return Optional.ofNullable(usuarioMapeador.paraDominio(this.usuarioRepository.findByEmail(email)));
     }
 
+    @Override
+    public UsuarioDominio salvar(UsuarioDominio usuario) {
+        var usuarioEntidade = usuarioMapeador.paraEntidade(usuario);
+
+        var usuarioDominio = usuarioMapeador.paraDominio(this.usuarioRepository.save(usuarioEntidade));
+        return usuarioDominio;
+        
+    }
 }

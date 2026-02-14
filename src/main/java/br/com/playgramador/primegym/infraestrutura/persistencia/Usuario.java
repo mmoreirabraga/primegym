@@ -54,6 +54,14 @@ public class Usuario extends BaseEntity implements Serializable{
         this.username = username;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getSenha() {
         return senha;
     }

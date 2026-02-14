@@ -12,7 +12,7 @@ public class UsuarioDominio {
 
     private String senha;
 
-    private String confirmarSenha;
+    private String confirmaSenha;
 
     public UsuarioDominio() {
     }
@@ -22,11 +22,11 @@ public class UsuarioDominio {
         this.email = email;
     }
 
-    public UsuarioDominio(UUID id, String username, String email, String senha, String confirmarSenha) {
+    public UsuarioDominio(UUID id, String username, String email, String senha, String confirmaSenha) {
         this(username, email);
         this.id = id;
         this.senha = senha;
-        this.confirmarSenha = confirmarSenha;
+        this.confirmaSenha = confirmaSenha;
     }
 
     public UUID getId() {
@@ -61,12 +61,12 @@ public class UsuarioDominio {
         this.senha = senha;
     }
 
-    public String getConfirmarSenha() {
-        return confirmarSenha;
+    public String getConfirmaSenha() {
+        return confirmaSenha;
     }
 
-    public void setConfirmarSenha(String confirmarSenha) {
-        this.confirmarSenha = confirmarSenha;
+    public void setConfirmaSenha(String confirmaSenha) {
+        this.confirmaSenha = confirmaSenha;
     }
 
     @Override

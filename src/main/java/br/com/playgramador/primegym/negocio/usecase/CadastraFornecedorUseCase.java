@@ -1,34 +1,29 @@
 package br.com.playgramador.primegym.negocio.usecase;
 
-import br.com.playgramador.primegym.aplicacao.entrada.NovoFornecedor;
-import br.com.playgramador.primegym.infraestrutura.repo.FornecedorRepository;
 import br.com.playgramador.primegym.negocio.annotation.UseCase;
-import br.com.playgramador.primegym.negocio.excecao.BusinessException;
+import br.com.playgramador.primegym.negocio.dominio.FornecedorDominio;
+import br.com.playgramador.primegym.negocio.port.FornecedorPorta;
+import br.com.playgramador.primegym.negocio.service.PoliticaValidacaoFornecedor;
 import jakarta.transaction.Transactional;
 
 @UseCase
 public class CadastraFornecedorUseCase {
 
-    private final FornecedorRepository fornecedorRepository;
+    private final FornecedorPorta fornecedorPorta;
+    private final PoliticaValidacaoFornecedor politicaValidacaoFornecedor;
 
-    public CadastraFornecedorUseCase(FornecedorRepository fornecedorRepository) {
-        this.fornecedorRepository = fornecedorRepository;
-    }
+    public CadastraFornecedorUseCase(FornecedorPorta fornecedorPorta,
+                                        PoliticaValidacaoFornecedor politicaValidacaoFornecedor) {
+          this.fornecedorPorta = fornecedorPorta;
+          this.politicaValidacaoFornecedor = politicaValidacaoFornecedor;
+     }
 
-    @Transactional
-   public void execute(NovoFornecedor novoFornecedor) {
+     @Transactional
+     public void execute(FornecedorDominio novoFornecedor) {
 
-        cnpjJaCadastrado(novoFornecedor.cnpj());
+          politicaValidacaoFornecedor.cnpjJaCadastrado(novoFornecedor.getCnpj());
 
-        var forncedor = novoFornecedor.converterParaEntidade();
+          fornecedorPorta.salvar(novoFornecedor);
+     } 
 
-        fornecedorRepository.save(forncedor);
-   } 
-
-   private void cnpjJaCadastrado(String cnpj) {
-
-        if (fornecedorRepository.existsByCnpj(cnpj)){
-             throw new BusinessException("cnpj_existe", cnpj);
-        }
-   }
 }
