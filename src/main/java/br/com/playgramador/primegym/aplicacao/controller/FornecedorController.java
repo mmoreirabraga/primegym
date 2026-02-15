@@ -8,6 +8,7 @@ import br.com.playgramador.primegym.aplicacao.entrada.NovoFornecedor;
 import br.com.playgramador.primegym.aplicacao.mapeador.AppFornecedorMapeador;
 import br.com.playgramador.primegym.negocio.usecase.AtualizaFornecedorUseCase;
 import br.com.playgramador.primegym.negocio.usecase.CadastraFornecedorUseCase;
+import br.com.playgramador.primegym.negocio.usecase.DeletaFornecedorUseCase;
 import jakarta.validation.Valid;
 
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 
@@ -25,15 +27,17 @@ public class FornecedorController {
 
     private final CadastraFornecedorUseCase cadastraFornecedorUseCase;
     private final AtualizaFornecedorUseCase atualizaFornecedorUseCase;
+    private final DeletaFornecedorUseCase deletaFornecedorUseCase;
     private final AppFornecedorMapeador appFornecedorMapeador;
 
     public FornecedorController(CadastraFornecedorUseCase cadastraFornecedorUseCase,
-            AtualizaFornecedorUseCase atualizaFornecedorUseCase, AppFornecedorMapeador appFornecedorMapeador) {
+            AtualizaFornecedorUseCase atualizaFornecedorUseCase, DeletaFornecedorUseCase deletaFornecedorUseCase,
+            AppFornecedorMapeador appFornecedorMapeador) {
         this.cadastraFornecedorUseCase = cadastraFornecedorUseCase;
         this.atualizaFornecedorUseCase = atualizaFornecedorUseCase;
+        this.deletaFornecedorUseCase = deletaFornecedorUseCase;
         this.appFornecedorMapeador = appFornecedorMapeador;
     }
-
 
     @PostMapping
     public ResponseEntity<String> salvaFornecedor(@Valid @RequestBody NovoFornecedor novoFornecedor) {
@@ -49,5 +53,11 @@ public class FornecedorController {
         
         return new ResponseEntity<>(String.format("%s editado com sucesso!", fornecedor.razaoSocial()), HttpStatus.OK);
     }
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarFornecedor(@PathVariable Long id) {
+        deletaFornecedorUseCase.execute(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    } 
 
 }

@@ -60,4 +60,9 @@ public class FornecedorRepositoryAdapter implements FornecedorPorta{
     public boolean isIdExiste(Long id) {
         return this.fornecedorRepository.existsById(id);
     }
+
+    @Override
+    public void deletar(Long id) {
+        this.fornecedorRepository.deleteById(id);
+    }
 }

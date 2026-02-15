@@ -2,7 +2,6 @@ package br.com.playgramador.primegym.aplicacao.entrada;
 
 import org.hibernate.validator.constraints.br.CNPJ;
 
-import br.com.playgramador.primegym.infraestrutura.persistencia.Fornecedor;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 

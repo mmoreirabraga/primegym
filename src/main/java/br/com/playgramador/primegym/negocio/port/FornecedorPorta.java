@@ -11,4 +11,5 @@ public interface FornecedorPorta {
     FornecedorDominio atualizar(FornecedorDominio fornecedor);
     Optional<FornecedorDominio> buscarFornecedorPeloId(Long id);
     boolean isIdExiste(Long id);
+    void deletar(Long id);
 }
